@@ -1,41 +1,23 @@
-
-# coding: utf-8
-
-# <H1> Quick EDSA Leaderboard get from Kaggle </H1>
-
-# <h3 style="color:Green">Pre  Script   Procedures - Getting   your   API   key </h3>
-
-# In[31]:
-
-
-#If you haven't installed the Kaggle Package run this code:(Can uncomment code to run in Notebook)
+# Quick EDSA Leaderboard get from Kaggle
+# Pre  Script   Procedures - Getting   your   API   key 
+#If you haven't installed the Kaggle Package, please do so via PIP:
 '''!pip install Kaggle'''
 
 #Once installed - get your Kaggle API key here https://www.kaggle.com/**YOUR USERNAME HERE*/account
 #The JSON file needs to be saved in, assuming windows, C:/Users/**YOUR USER**/.kaggle
 #Kaggle api checks the environment variable here.
-#See Screenshot below
 
 
-# ![image.png](attachment:image.png)
+# NB to ensure API Key instructions have been followed first.
 
-# <h4 style="color:Red">NB to ensure API Key instructions have been followed first.  </h4>
-
-# <h3 style="color:Green">Packages needed</h3>
-
-# In[27]:
-
-
+# Packages needed
 import kaggle as kg
 import zipfile
 import pandas as pd
 import os
 
 
-# <h3 style="color:Green">Funtion Defining</h3>
-
-# In[33]:
-
+# Funtion Defining
 
 def comp_edsa_leaderboard(competition_name):
     '''
@@ -70,17 +52,10 @@ def comp_edsa_leaderboard(competition_name):
     return df_comp_leaderboard
 
 
-# <h3 style="color:Green">Play Ground</h3>
-
-# In[37]:
-
+# Play Ground
 
 #Calling the function
 df_comp_leaderboard = comp_edsa_leaderboard('house-prices-advanced-regression-techniques')
-
-
-# In[39]:
-
 
 #Filters the Dataframe to show only EDSA teams &&& only the team's lowest score.
 df_comp_leaderboard[df_comp_leaderboard['TeamName'].str.contains('EDSA')].groupby('TeamId').min().sort_values('Score')
